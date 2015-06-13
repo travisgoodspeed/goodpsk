@@ -49,7 +49,7 @@ class GoodPSK:
             print("p,d,v=%f,%f,%f" % (phase,divisor,volume));
             
             values=[];
-            for i in range(0, length+1):
+            for i in range(0, length):
                 #TODO The frequency should be chosen to get a zero crossing.
                 value = int(math.sin(math.pi*phase+2*math.pi*(i/divisor))*volume)
                 print(value);
