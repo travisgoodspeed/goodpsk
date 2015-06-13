@@ -28,7 +28,7 @@ class GoodPSK:
         """Generates sample sets for each symbol."""
         self.rate=rate;
         self.phases=phases;
-        self.symbols=[None,None];
+        self.symbols=[]; 
         
         length=int(self.audiorate/31.25);
         #print("%i samples per symbol.\n"%length);
@@ -52,8 +52,7 @@ class GoodPSK:
                 values.append(packed_value)
                 #values.append(packed_value) #Second channel, unused.
             value_str = ''.join(values)
-            #self.symbols.append(value_str);
-            self.symbols[phase]=value_str;
+            self.symbols.append(value_str);
         
     def open_file(self,filename):
         """Opens a file for output."""
