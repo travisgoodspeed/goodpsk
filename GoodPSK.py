@@ -73,7 +73,7 @@ class GoodPSK:
             self.writesymbol(int(bit));
     lastsymbol=0;
     def writesymbol(self,symbol):
-        """Accepts raw sound to write."""
+        """Accepts a single bit to write."""
         if symbol==0:
             self.lastsymbol=self.lastsymbol^1;
         if self.outfile:

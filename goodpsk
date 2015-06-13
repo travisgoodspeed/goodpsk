@@ -17,13 +17,13 @@ channel in a VHF band should be fine.
 goodpsk [-switch [params]]
 
 COMMON OPTIONS:
-  -o output.wav                    Output to a .wav file.
-  -t "hello world"                 Transmit "Hello world."
-  -b "00000110011000000"           Transmit raw bits.
+  -o output.wav               Output to a .wav file.
+  -t "hello world"            Transmit "Hello world."
+  -b "00000110011000000"      Transmit raw bits.
 
 RARE OPTIONS:
-  --delim 00                        Set the intercharacter delimiter.
-  
+  --delim 00                  Set the intercharacter delimiter.
+  --nofilter                  Disable filtering at the phase change.
 """);
 
 
@@ -48,6 +48,8 @@ while i<len(sys.argv):
     elif p=="--delim":
         i=i+1;
         psk.varicode.delim=sys.argv[i];
+    elif p=="--nofilter":
+        print("Sorry, but this doesn't work yet.");
     elif p=="-h" or p=="--help":
         help();
         sys.exit(0);
