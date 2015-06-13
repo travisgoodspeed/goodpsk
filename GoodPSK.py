@@ -22,7 +22,7 @@ class GoodPSK:
     def __init__(self, rate=31, phases=2):
         """Initializes the encoder."""
         self.set_rate(rate,phases);
-        print("Initialized to %iPSK%i." % (phases,rate));
+        #print("Initialized to %iPSK%i." % (phases,rate));
     
     def set_rate(self,rate=31,phases=2):
         """Generates sample sets for each symbol."""
@@ -31,28 +31,23 @@ class GoodPSK:
         self.symbols=[None,None];
         
         length=int(self.audiorate/31.25);
-        print("%i samples per symbol.\n"%length);
+        #print("%i samples per symbol.\n"%length);
         divisor=self.audiorate/1000.0;
         volume=32767.0/5;
         
         for phase in range(0,phases):
-            print("Generating phase %i."%phase);
+            #print("Generating phase %i."%phase);
             
             a=math.sin(math.pi*phase+2*math.pi*(0))*volume;
             b=math.sin(math.pi*phase+2*math.pi*((length)/divisor))*volume;
-            #  b=sin(pi+2pi*(l/d))
-            #  l/d=1;
-            
-            c=2*math.pi*(length*1.0/divisor);
-
-            print("a,b,c=%f,%f,%f" % (a,b,c));
-            print("p,d,v=%f,%f,%f" % (phase,divisor,volume));
+            if a>1 or b>1:
+                print "Warning, sign doesn't zero at the end of the sample period."
             
             values=[];
             for i in range(0, length):
                 #TODO The frequency should be chosen to get a zero crossing.
                 value = int(math.sin(math.pi*phase+2*math.pi*(i/divisor))*volume)
-                print(value);
+                #print(value);
                 packed_value = struct.pack('h', value)
                 values.append(packed_value)
                 #values.append(packed_value) #Second channel, unused.
