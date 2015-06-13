@@ -44,8 +44,6 @@ class GoodPSK:
         
         #Flat symbols
         for phase in range(0,phases):
-            #print("Generating phase %i."%phase);
-            
             a=math.sin(math.pi*phase+2*math.pi*(0))*volume;
             b=math.sin(math.pi*phase+2*math.pi*((length)/divisor))*volume;
             if a>1 or b>1:
@@ -64,8 +62,6 @@ class GoodPSK:
         
         #Rising
         for phase in range(0,phases):
-            print("Generating rising phase %i."%phase);
-            
             a=math.sin(math.pi*phase+2*math.pi*(0))*volume;
             b=math.sin(math.pi*phase+2*math.pi*((length)/divisor))*volume;
             if a>1 or b>1:
@@ -76,7 +72,6 @@ class GoodPSK:
                 atten=min(i,100)*1.0/100.0;
                 
                 value = int(atten*math.sin(math.pi*phase+2*math.pi*(i/divisor))*volume)
-                print(value);
                 packed_value = struct.pack('h', value)
                 values.append(packed_value)
                 #values.append(packed_value) #Second channel, unused.
@@ -85,8 +80,6 @@ class GoodPSK:
 
         #Falling
         for phase in range(0,phases):
-            print("Generating falling phase %i."%phase);
-            
             a=math.sin(math.pi*phase+2*math.pi*(0))*volume;
             b=math.sin(math.pi*phase+2*math.pi*((length)/divisor))*volume;
             if a>1 or b>1:
@@ -97,7 +90,6 @@ class GoodPSK:
                 atten=min(length-i,100)*1.0/100.0;
                 
                 value = int(atten*math.sin(math.pi*phase+2*math.pi*(i/divisor))*volume)
-                print(value);
                 packed_value = struct.pack('h', value)
                 values.append(packed_value)
                 #values.append(packed_value) #Second channel, unused.
@@ -106,8 +98,6 @@ class GoodPSK:
         
         #Rising and Falling
         for phase in range(0,phases):
-            print("Generating rising and falling phase %i."%phase);
-            
             a=math.sin(math.pi*phase+2*math.pi*(0))*volume;
             b=math.sin(math.pi*phase+2*math.pi*((length)/divisor))*volume;
             if a>1 or b>1:
@@ -121,7 +111,6 @@ class GoodPSK:
                 atten=min(attenrise,attenfall);
                 
                 value = int(atten*math.sin(math.pi*phase+2*math.pi*(i/divisor))*volume)
-                print(value);
                 packed_value = struct.pack('h', value)
                 values.append(packed_value)
                 #values.append(packed_value) #Second channel, unused.
