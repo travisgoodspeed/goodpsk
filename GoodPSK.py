@@ -162,7 +162,16 @@ class GoodPSK:
             self.nextsymbol=self.thissymbol;
         
         if self.outfile:
-            self.outfile.writeframes(self.symbols[self.thissymbol]);
+            if ((self.lastsymbol==self.thissymbol and self.thissymbol==self.nextsymbol)
+                  or self.filter==False):
+                self.outfile.writeframes(self.symbols[self.thissymbol]);
+            elif self.lastsymbol!=self.thissymbol and self.thissymbol==self.nextsymbol:
+                self.outfile.writeframes(self.symbolrise[self.thissymbol]);
+            elif self.lastsymbol==self.thissymbol and self.thissymbol!=self.nextsymbol:
+                self.outfile.writeframes(self.symbolfall[self.thissymbol]);
+            elif self.lastsymbol!=self.thissymbol and self.thissymbol!=self.nextsymbol:
+                self.outfile.writeframes(self.symbolrisefall[self.thissymbol]);
+            
         #FIXME Sound output here on Linux, Mac, and Windows.
         
         

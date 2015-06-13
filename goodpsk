@@ -33,10 +33,7 @@ psk=GoodPSK(rate=31, phases=2);
 i=1;
 while i<len(sys.argv):
     p=sys.argv[i];
-    if p[0]!="-":
-        print("ERROR, '%s' is not a valid switch."%p);
-        sys.exit(1);
-    elif p=="-o" or p=="--out":
+    if p=="-o" or p=="--out":
         i=i+1;
         psk.open_file(sys.argv[i]);
     elif p=="-t" or p=="--text":
@@ -49,10 +46,15 @@ while i<len(sys.argv):
         i=i+1;
         psk.varicode.delim=sys.argv[i];
     elif p=="--nofilter":
-        print("Sorry, but this doesn't work yet.");
+        psk.filter=False;
+    elif p=="--filter":
+        psk.filter=True;
     elif p=="-h" or p=="--help":
         help();
         sys.exit(0);
+    else:
+        print("ERROR, '%s' is not a valid switch."%p);
+        sys.exit(1);
     i=i+1;
 
 
