@@ -18,7 +18,7 @@ class Varicode:
         """Decodes a string of bits to a string of letters."""
         return "TEST";
 
-    delim="000000";
+    delim="00";
     characters={
         "\n": "11101",
         " ":  "1",

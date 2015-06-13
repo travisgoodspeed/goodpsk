@@ -15,9 +15,15 @@ channel in a VHF band should be fine.
 
 
 goodpsk [-switch [params]]
-  -o output.wav                    Output filename.
+
+COMMON OPTIONS:
+  -o output.wav                    Output to a .wav file.
   -t "hello world"                 Transmit "Hello world."
   -b "00000110011000000"           Transmit raw bits.
+
+RARE OPTIONS:
+  --delim 00                        Set the intercharacter delimiter.
+  
 """);
 
 
@@ -39,7 +45,9 @@ while i<len(sys.argv):
     elif p=="-b" or p=="--bits":
         i=i+1;
         psk.writebits(sys.argv[i]);
-    
+    elif p=="--delim":
+        i=i+1;
+        psk.varicode.delim=sys.argv[i];
     elif p=="-h" or p=="--help":
         help();
         sys.exit(0);
