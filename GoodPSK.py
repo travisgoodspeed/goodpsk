@@ -76,5 +76,6 @@ class GoodPSK:
         """Accepts raw sound to write."""
         if symbol==0:
             self.lastsymbol=self.lastsymbol^1;
-        self.outfile.writeframes(self.symbols[self.lastsymbol]);
-        
+        if self.outfile:
+            self.outfile.writeframes(self.symbols[self.lastsymbol]);
+        #FIXME Sound output here on Linux, Mac, and Windows.
