@@ -79,3 +79,5 @@ class GoodPSK:
         if self.outfile:
             self.outfile.writeframes(self.symbols[self.lastsymbol]);
         #FIXME Sound output here on Linux, Mac, and Windows.
+
+
