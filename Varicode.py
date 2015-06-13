@@ -9,7 +9,7 @@ class Varicode:
         """Encodes a string to a string of bits."""
         out="";
         for c in text:
-            print(c);
+            #print(c);
             word=self.characters[c]+self.delim;
             out=out+word;
             #print("%c -- %s"%(c,word));
@@ -34,6 +34,11 @@ class Varicode:
         "7":  "110101101",
         "8":  "110101011",
         "9":  "110110111",
+        
+        #Symbols,
+        ",":  "1110101",
+        ".":  "1010111",
+        "'":  "101111111",
         
         #Lowercase
         "a": "1011",
