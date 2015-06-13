@@ -15,8 +15,9 @@ channel in a VHF band should be fine.
 
 
 goodpsk [-switch [params]]
-  -o output.wav
-  -t "hello world"
+  -o output.wav                    Output filename.
+  -t "hello world"                 Transmit "Hello world."
+  -b "00000110011000000"           Transmit raw bits.
 """);
 
 
@@ -35,6 +36,10 @@ while i<len(sys.argv):
     elif p=="-t" or p=="--text":
         i=i+1;
         psk.write(sys.argv[i]);
+    elif p=="-b" or p=="--bits":
+        i=i+1;
+        psk.writebits(sys.argv[i]);
+    
     elif p=="-h" or p=="--help":
         help();
         sys.exit(0);

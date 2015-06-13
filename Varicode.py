@@ -1,4 +1,4 @@
-# Varicode class for PSK31.
+# Varicode class for GoodPSK.
 
 class Varicode:
     """This class implements the PSK31 varicode alphabet."""
