@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python
 
 from GoodPSK import GoodPSK;
 
@@ -17,15 +17,15 @@ psk.open_file("out.wav");
 
 
 
-psk.writebits("11111111111111111");
-psk.writebits("00000000000000000");
 
-#psk.writebits("000000000000000000000000000000");
-psk.write("1337 1377 13777");
-psk.write("1337 1377 13777");
-psk.write("1337 1377 13777");
+psk.write("""
+TEST TEST TEST by KK4VCZ KK4VCZ KK4VCZ
 
+This is a test of a new PSK31 modulator.  I don't quite have all of
+the filters in place, so please be kind and forgive me for any
+accidental QRM.
 
+Transmitting on 6 Meters from FM29jw, West Philadelphia.
 
-print(len(psk.symbols[0]));
-print(len(psk.symbols[1]));
+""");
+
