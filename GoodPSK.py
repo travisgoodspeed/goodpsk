@@ -57,7 +57,7 @@ class GoodPSK:
     def open_file(self,filename):
         """Opens a file for output."""
         self.outfile = wave.open(filename, 'w')
-        # Mono wave file, 44.1k
+        # Mono wave file, 48k
         self.outfile.setparams((1, 2, self.audiorate, 0, 'NONE', 'not compressed'))
 
     
