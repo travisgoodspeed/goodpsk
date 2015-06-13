@@ -1,0 +1,56 @@
+#!/usr/bin/python
+
+from GoodPSK import GoodPSK;
+import sys;
+
+def help():
+    print("""
+GoodPSK is a quick little tool by Travis Goodspeed, KK4VCZ.  It lets
+you quickly play test patters in PSK31 at varied levels of
+abstraction.
+
+At present it does not properly filter artifacts of the phase shift,
+so it should not be used on the DX channels.  Testing on an audio
+channel in a VHF band should be fine.
+
+
+goodpsk [-switch [params]]
+  -o output.wav
+  -t "hello world"
+""");
+
+
+psk=GoodPSK(rate=31, phases=2);
+
+
+i=1;
+while i<len(sys.argv):
+    p=sys.argv[i];
+    if p[0]!="-":
+        print("ERROR, '%s' is not a valid switch."%p);
+        sys.exit(1);
+    elif p=="-o" or p=="--out":
+        i=i+1;
+        psk.open_file(sys.argv[i]);
+    elif p=="-t" or p=="--text":
+        i=i+1;
+        psk.write(sys.argv[i]);
+    elif p=="-h" or p=="--help":
+        help();
+        sys.exit(0);
+    i=i+1;
+
+
+#psk.write("KC3BVL KC3BVL KC3BVL de KK4VCZ KK4VCZ KK4VCZ");
+
+
+#message=[0,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,1,0,1,1,0,0,0];
+
+#for s in message:
+#    psk.writesymbol(s);
+
+
+
+
+#psk.write();
+
