@@ -69,7 +69,14 @@ class GoodPSK:
             
             values=[];
             for i in range(0, length):
-                atten=min(i,100)*1.0/100.0;
+                #Sharp linear.
+                #atten=min(i,100)*1.0/100.0;
+                
+                #Gentle curve
+                atten=1.0;
+                if i<length/2:
+                    atten=math.sin(i*math.pi/length);
+                
                 
                 value = int(atten*math.sin(math.pi*phase+2*math.pi*(i/divisor))*volume)
                 packed_value = struct.pack('h', value)
@@ -87,7 +94,14 @@ class GoodPSK:
             
             values=[];
             for i in range(0, length):
+                #Sharp linear
                 atten=min(length-i,100)*1.0/100.0;
+                
+                #Gentle curve
+                atten=1.0;
+                if i>length/2:
+                    atten=math.sin(i*math.pi/length);
+                
                 
                 value = int(atten*math.sin(math.pi*phase+2*math.pi*(i/divisor))*volume)
                 packed_value = struct.pack('h', value)
@@ -105,10 +119,13 @@ class GoodPSK:
             
             values=[];
             for i in range(0, length):
-                #Drop off on both sides.
-                attenfall=min(length-i,100)*1.0/100.0;
-                attenrise=max(i,100)*1.0/100.0;
-                atten=min(attenrise,attenfall);
+                #Linear Drop off on both sides.
+                #attenfall=min(length-i,100)*1.0/100.0;
+                #attenrise=max(i,100)*1.0/100.0;
+                #atten=min(attenrise,attenfall);
+                
+                #Gentle curve
+                atten=math.sin(i*math.pi/length);
                 
                 value = int(atten*math.sin(math.pi*phase+2*math.pi*(i/divisor))*volume)
                 packed_value = struct.pack('h', value)
