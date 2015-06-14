@@ -1,4 +1,4 @@
-
+VLC=/Applications/VLC.app/Contents/MacOS/VLC
 
 clean:
 	rm -f *.wav
@@ -8,3 +8,7 @@ all:
 		-b 000000000000
 play: all
 	mplayer out.wav
+transmit: all
+	$(VLC) -I dummy --auhal-audio-device=69 out.wav vlc://quit
+	$(VLC) -I dummy --auhal-audio-device out.wav vlc://quit
+
