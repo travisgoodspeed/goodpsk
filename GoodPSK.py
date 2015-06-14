@@ -20,10 +20,11 @@ class GoodPSK:
     outfile=None;
     
     symbols=[];             # Symbols as repeated, with no attenuation.
-    filter=True;             # Attenuate to reduce noise during phase change.
+    filter=True;            # Attenuate to reduce noise during phase change.
     symbolrise=[];          # Previous symbol was different.
     symbolfall=[];          # Next symbol is different.
     symbolrisefall=[];      # Previous and next symbols are different.
+    symbolsilent=[];        # Empty symbols.
     textsymbols=[0,1];
     
     def __init__(self, rate=31, phases=2):
@@ -41,6 +42,20 @@ class GoodPSK:
         #print("%i samples per symbol.\n"%length);
         divisor=self.audiorate/1000.0;
         volume=32767.0/5;
+        
+        #Flat symbols
+        for phase in range(0,phases):
+            values=[];
+            for i in range(0, length):
+                
+                value = 0
+                #print(value);
+                packed_value = struct.pack('h', value)
+                values.append(packed_value)
+                #values.append(packed_value) #Second channel, unused.
+            value_str = ''.join(values)
+            self.symbolsilent.append(value_str);
+        
         
         #Flat symbols
         for phase in range(0,phases):
@@ -150,7 +165,7 @@ class GoodPSK:
     def writebits(self,towrite):
         """Accepts raw bits to write out."""
         for bit in towrite:
-            self.writesymbol(int(bit));
+            self.writesymbol(bit);
 
     lastsymbol=0; #Last thing we sent.
     thissymbol=0; #Thing we're sending now.
@@ -159,6 +174,11 @@ class GoodPSK:
         """Accepts a single bit to write."""
         self.lastsymbol=self.thissymbol;
         self.thissymbol=self.nextsymbol;
+        
+        #Janky hack to support silent periods.
+        if symbol==" ":
+            self.outfile.writeframes(self.symbolsilent[0]);
+            return;
         
         #PSK31 bits are encoded as a change, not an absolute state.
         #So we flip for a 0 and don't flip for a 1.
