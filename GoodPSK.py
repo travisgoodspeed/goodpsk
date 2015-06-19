@@ -182,7 +182,7 @@ class GoodPSK:
         
         #PSK31 bits are encoded as a change, not an absolute state.
         #So we flip for a 0 and don't flip for a 1.
-        if symbol==0:
+        if symbol=="0":
             self.nextsymbol=self.thissymbol^1;
         else:
             self.nextsymbol=self.thissymbol;
