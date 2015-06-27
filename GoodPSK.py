@@ -21,6 +21,7 @@ class GoodPSK:
     
     symbols=[];             # Symbols as repeated, with no attenuation.
     filter=True;            # Attenuate to reduce noise during phase change.
+    filterall=False;        # Attenuate *ALL* symbols, gets confusing.
     symbolrise=[];          # Previous symbol was different.
     symbolfall=[];          # Next symbol is different.
     symbolrisefall=[];      # Previous and next symbols are different.
@@ -41,7 +42,7 @@ class GoodPSK:
         length=int(self.audiorate/31.25);
         #print("%i samples per symbol.\n"%length);
         divisor=self.audiorate/1000.0;
-        volume=32767.0/5;
+        volume=32767.0/2;
         
         #Flat symbols
         for phase in range(0,phases):
@@ -189,14 +190,16 @@ class GoodPSK:
         
         if self.outfile:
             if ((self.lastsymbol==self.thissymbol and self.thissymbol==self.nextsymbol)
-                  or self.filter==False):
+                  or self.filter==False) and not self.filterall:
                 self.outfile.writeframes(self.symbols[self.thissymbol]);
+            elif ((self.lastsymbol!=self.thissymbol and self.thissymbol!=self.nextsymbol)
+                  or self.filterall==True):
+                self.outfile.writeframes(self.symbolrisefall[self.thissymbol]);
             elif self.lastsymbol!=self.thissymbol and self.thissymbol==self.nextsymbol:
                 self.outfile.writeframes(self.symbolrise[self.thissymbol]);
             elif self.lastsymbol==self.thissymbol and self.thissymbol!=self.nextsymbol:
                 self.outfile.writeframes(self.symbolfall[self.thissymbol]);
-            elif self.lastsymbol!=self.thissymbol and self.thissymbol!=self.nextsymbol:
-                self.outfile.writeframes(self.symbolrisefall[self.thissymbol]);
+            
             
         #FIXME Sound output here on Linux, Mac, and Windows.
         

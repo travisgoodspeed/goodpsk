@@ -19,11 +19,13 @@ goodpsk [-switch [params]]
 COMMON OPTIONS:
   -o output.wav               Output to a .wav file.
   -t "hello world"            Transmit "Hello world."
-  -b "00000110011000000"      Transmit raw bits.
+  -b "00000110011000000"      Transmit raw PSK bits.
 
 RARE OPTIONS:
   --delim 00                  Set the intercharacter delimiter.
   --nofilter                  Disable filtering at the phase change.
+  --filter                    Enable filtering during transitions.
+  --filterall                 Filter both transitions and non-transitions.
 """);
 
 
@@ -49,6 +51,10 @@ while i<len(sys.argv):
         psk.filter=False;
     elif p=="--filter":
         psk.filter=True;
+    elif p=="--filterall":
+        psk.filter=True;
+        psk.filterall=True;
+        
     elif p=="-h" or p=="--help":
         help();
         sys.exit(0);
