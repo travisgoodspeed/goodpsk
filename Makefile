@@ -1,7 +1,7 @@
 VLC=/Applications/VLC.app/Contents/MacOS/VLC
 
 clean:
-	rm -f *.wav
+	rm -rf *.wav *~ __pycache__ *.pyc
 all:
 
 #       #Simple test.
