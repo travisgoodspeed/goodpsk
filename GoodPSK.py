@@ -48,7 +48,7 @@ class GoodPSK:
         for phase in range(0,phases):
             values=[];
             for i in range(0, length):
-                value = 0  #TODO This should be vary quiet, shaped zeroes.
+                value = 0  #TODO This should be very quiet, shaped zeroes.
                 packed_value = struct.pack('h', value)
                 values.append(packed_value)
                 #values.append(packed_value) #Second channel, unused.

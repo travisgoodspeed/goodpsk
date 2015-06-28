@@ -11,6 +11,8 @@ PSK Lecture 0: Basics of PSK31
 PSK Lecture 1: Building a Bad Encoder
 PSK Lecture 2: Shaping a Clean Encoder
 
+PSK Lecture 3: 
+
 """;
 
 

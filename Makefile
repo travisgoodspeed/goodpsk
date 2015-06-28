@@ -52,7 +52,7 @@ play: all
 	afplay morse.wav
 transmit: all
 #       #Transmit the sound.
-	$(VLC) -I dummy --auhal-audio-device=69 out.wav vlc://quit
+	$(VLC) -I dummy --auhal-audio-device=69 lecture0.wav vlc://quit
 #       #Reset VLC to the default card.
 	$(VLC) -I dummy --auhal-audio-device vlc://quit
 
