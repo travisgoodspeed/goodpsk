@@ -2,7 +2,7 @@
 
 from GoodPSK import GoodPSK;
 from config import *;
-from Lecture import Lecture;
+from Lecture import Lecture, SCHEDULE;
 
 psk=GoodPSK();
 
@@ -10,6 +10,28 @@ lecture=Lecture(psk);
 lecture.open_file("lecture1.wav");
 
 lecture.intro();
+lecture.write("""
+
+Howdy y'all,
+
+The followin' is a radio lecture by KK4VCZ, addressed to all amateurs
+domestic and foreign, that we might know a little more about the PSK31
+protocol that we use each day.  If you have clear reception, consider
+making an audio or text recording for later reference.  Anyone
+retransmitting this message without my expressed permission, but under
+his own call sign, is a good friend of me an' mine.
+
+This is PSK31 Lecture One by Travis Goodspeed, KK4VCZ, concerning the
+creation of a naive and noisy PSK31 encoder in Python.  It is preceded
+by Lecture Zero, a brief introduction to PSK31.  This lecture is followed by
+Lecture Two, in which we'll properly shape our transmission to avoid
+harmful harmonics.  Further lectures will cover polyglots,
+schizophrens, and other strange transmissions.
+
+The following are the lectures in this series:
+%s
+
+"""%SCHEDULE);
 
 
 

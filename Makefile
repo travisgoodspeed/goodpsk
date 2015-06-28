@@ -5,7 +5,9 @@ clean:
 all: tests lectures
 
 lectures: *.py goodpsk
-	./lecture0.py
+	./lecture0.py >lecture0.log
+	./lecture1.py >lecture1.log
+
 
 tests: *.py goodpsk
 #       #Simple test.
