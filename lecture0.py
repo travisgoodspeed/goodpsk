@@ -24,8 +24,6 @@ his own call sign, is a good friend of me an' mine.
 This is PSK31 Lecture Zero by Travis Goodspeed, KK4VCZ, concerning the
 basics of PSK31 and how to write an encoder.  It is followed by
 Lecture One, concerning the basics of writing a PSK31 decoder.
-Further lectures will cover polyglots, schizophrens, and other strange
-transmissions.
 
 The following are the lectures in this series:
 %s

@@ -25,8 +25,7 @@ This is PSK31 Lecture One by Travis Goodspeed, KK4VCZ, concerning the
 creation of a naive and noisy PSK31 encoder in Python.  It is preceded
 by Lecture Zero, a brief introduction to PSK31.  This lecture is followed by
 Lecture Two, in which we'll properly shape our transmission to avoid
-harmful harmonics.  Further lectures will cover polyglots,
-schizophrens, and other strange transmissions.
+harmful harmonics.
 
 The following are the lectures in this series:
 %s
