@@ -166,6 +166,11 @@ Then we attenuate the point value of each sample in the series.
 
 value = atten*sin(pi*phase+2*pi*(i/divisor))*volume
 
+
+Once you patch your code to include these features, your output will
+sound nice and smooth, with the traditional wobble that gives PSK31
+its distinctive sound.
+
 """);
 
 lecture.close();
