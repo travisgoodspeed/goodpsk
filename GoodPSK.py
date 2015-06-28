@@ -42,15 +42,13 @@ class GoodPSK:
         length=int(self.audiorate/31.25);
         #print("%i samples per symbol.\n"%length);
         divisor=self.audiorate/1000.0;
-        volume=32767.0/2;
+        volume=32767.0;
         
-        #Flat symbols
+        #Silent symbols
         for phase in range(0,phases):
             values=[];
             for i in range(0, length):
-                
-                value = 0
-                #print(value);
+                value = 0  #TODO This should be vary quiet, shaped zeroes.
                 packed_value = struct.pack('h', value)
                 values.append(packed_value)
                 #values.append(packed_value) #Second channel, unused.
@@ -69,7 +67,6 @@ class GoodPSK:
             for i in range(0, length):
                 
                 value = int(math.sin(math.pi*phase+2*math.pi*(i/divisor))*volume)
-                #print(value);
                 packed_value = struct.pack('h', value)
                 values.append(packed_value)
                 #values.append(packed_value) #Second channel, unused.
