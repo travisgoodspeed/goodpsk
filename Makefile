@@ -2,8 +2,12 @@ VLC=/Applications/VLC.app/Contents/MacOS/VLC
 
 clean:
 	rm -rf *.wav *~ __pycache__ *.pyc
-all:
+all: tests lectures
 
+lectures: *.py goodpsk
+	./lecture0.py
+
+tests: *.py goodpsk
 #       #Simple test.
 	./goodpsk -o out.wav -b 00000000000000000000000000000       \
 		-t "The quick brown fox jumped over the lazy dog."  \
