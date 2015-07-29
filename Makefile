@@ -1,12 +1,13 @@
 VLC=/Applications/VLC.app/Contents/MacOS/VLC
 
+all: tests lectures
 clean:
 	rm -rf *.wav *~ __pycache__ *.pyc
-all: tests lectures
 
 lectures: *.py goodpsk
 	./lecture0.py >lecture0.log
 	./lecture1.py >lecture1.log
+	./lecture2.py >lecture2.log
 
 
 tests: *.py goodpsk
